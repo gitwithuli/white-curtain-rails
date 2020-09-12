@@ -1,24 +1,24 @@
-class Api::V1::MoviesController < Api::V1::BaseController
+class Api::V1::MoviesController < ApplicationController
    before_action :authenticate_user, only: [:follow, :unfollow, :get_recommendations]
 
   def index
-    render json: MovieSerializer.new(Movie.all, {include: [:genre, :stars]}).serialized_json
+    render json: MovieSerializer.new(Movie.all, {include: [:genre, :stars]}).serializable_hash
   end
 
   def show
-    render json: MovieSerializer.new(Movie.find(params[:id]), {include: [:genre, :stars]}).serialized_json
+    render json: MovieSerializer.new(Movie.find(params[:id]), {include: [:genre, :stars]}).serializable_hash
   end
 
   def follow
     movie = Movie.find(params[:movie_id])
     current_user.followed_movies.push movie
-    render json: MovieSerializer.new(current_user.followed_movies).serialized_json
+    render json: MovieSerializer.new(current_user.followed_movies).serializable_hash
   end
 
   def unfollow
     Follow.where(user_id: current_user.id, followable_type: "Movie",
       followable_id: params[:movie_id]).first.destroy
-    render json: MovieSerializer.new(current_user.followed_movies).serialized_json
+    render json: MovieSerializer.new(current_user.followed_movies).serializable_hash
   end
 
   def get_recommendations
