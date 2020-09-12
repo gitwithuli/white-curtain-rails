@@ -47,7 +47,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise_token_auth'
 gem 'themoviedb', '~> 1.0', '>= 1.0.1'
-gem 'fast_jsonapi'
+gem 'jsonapi-serializer', '~> 2.1'
+gem 'httparty', '~> 0.18.1'
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 
 group :test do
   gem 'factory_bot_rails'

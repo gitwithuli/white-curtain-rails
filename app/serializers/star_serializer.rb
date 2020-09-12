@@ -1,4 +1,4 @@
 class StarSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attributes :name, :id
 end
