@@ -1,5 +1,5 @@
 class UserSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attributes :email
   has_many :followed_movies, serializer: :movie
   has_many :followed_genres, serializer: :genre
